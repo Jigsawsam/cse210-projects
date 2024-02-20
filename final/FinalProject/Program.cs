@@ -6,6 +6,6 @@ class Program
     {
         Console.Clear();
         Manager manager = new Manager();
-        Manager.Start();
+        manager.Start();
     }
 }
