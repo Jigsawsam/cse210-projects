@@ -20,17 +20,5 @@ public abstract class DietTracker : Tracker
 
         LogData(mealEntry);
     }
-    public override string GenerateReport()
-    {
-        List<string> dietData = GetTrackedData();
-
-        string report = "Diet Tracker Report:\n";
-
-        foreach (string entry in dietData)
-        {
-            report += entry + "\n";
-        }
-
-        return report;
-    }
+    public abstract override string GenerateReport();
 }

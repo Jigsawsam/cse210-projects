@@ -23,6 +23,6 @@ public class Profile
     }
     public string GetProfile()
     {
-        return $"Age: {_age}, Height: {_height} cm, Weight: {_weight} kg, Goal: {_goal}";
+        return $"Age: {_age}, Height: {_height} ft, Weight: {_weight} lbs, Goal: {_goal}";
     }
 }

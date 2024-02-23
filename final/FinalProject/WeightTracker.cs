@@ -25,24 +25,18 @@ public abstract class WeightTracker : Tracker
 
     public double CalculateProgress()
     {
-        double totalWeightLossInPounds = _initialWeightInPounds - _latestWeightInPounds;
-        
-        TimeSpan elapsedTime = DateTime.Today - _startDate;
-        int totalWeeks = (int)(elapsedTime.TotalDays / 7);
-
-        double averageWeeklyLossInPounds = totalWeightLossInPounds / totalWeeks;
-        return averageWeeklyLossInPounds;
+        double totalWeightChangeInPounds = GetLatestWeightInPounds() - _initialWeightInPounds;
+        return totalWeightChangeInPounds;
     }
 
-    public override string GenerateReport()
+    public abstract override string GenerateReport();
+    
+    public double GetInitialWeightInPounds()
     {
-        double progressInPounds = CalculateProgress();
-
-        string report = $"Weight Tracker Report:\n" +
-                        $"- Initial Weight: {_initialWeightInPounds} lbs\n" +
-                        $"- Latest Weight: {_latestWeightInPounds} lbs\n" +
-                        $"- Average Weekly Progress: {progressInPounds} lbs/week";
-
-        return report;
+        return _initialWeightInPounds;
+    }
+    public double GetLatestWeightInPounds()
+    {
+        return _latestWeightInPounds;
     }
 }

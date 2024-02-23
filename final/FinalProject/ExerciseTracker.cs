@@ -8,7 +8,7 @@ public abstract class ExerciseTracker : Tracker
     }
     public void LogExercise()
     {
-        Console.WriteLine("Choose an exercise activity:");
+        Console.WriteLine("\nChoose an exercise activity:");
         Console.WriteLine("1. Running");
         Console.WriteLine("2. Cycling");
         Console.WriteLine("3. Swimming");
@@ -33,11 +33,12 @@ public abstract class ExerciseTracker : Tracker
         Console.Write("Enter the duration of the activity (in hours): ");
         double duration = double.Parse(Console.ReadLine());
 
-        string exerciseEntry = $"{DateTime.Today:MM-dd-yyyy} - Exercise: {activity}, Duration: {duration} hours";
+        double caloriesBurned = CalculateCaloriesBurned(activity, duration);
+
+        string exerciseEntry = $"{DateTime.Today:MM-dd-yyyy} - Exercise: {activity}, Duration: {duration} hours, Avg kcal burned {caloriesBurned}";
         LogData(exerciseEntry);
 
-        double caloriesBurned = CalculateCaloriesBurned(activity, duration);
-        Console.WriteLine($"Calories burned: {caloriesBurned} kcal");
+        Console.WriteLine($"\n---Calories burned: {caloriesBurned} kcal---");
     }
 
     public double CalculateCaloriesBurned(string activity, double duration)
@@ -61,22 +62,5 @@ public abstract class ExerciseTracker : Tracker
         return caloriesBurned;
     }
 
-    public override string GenerateReport()
-    {
-        List<string> exerciseData = GetTrackedData();
-
-        if (exerciseData.Count == 0)
-        {
-            return "No exercise data recorded.";
-        }
-
-        string report = "Exercise Tracker Report:\n";
-
-        foreach (string entry in exerciseData)
-        {
-            report += entry + "\n";
-        }
-
-        return report;
-    }
+    public abstract override string GenerateReport();
 }

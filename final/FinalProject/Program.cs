@@ -6,6 +6,7 @@ class Program
     {
         Console.Clear();
         Manager manager = new Manager();
+        manager.SetProfile();
         manager.Start();
     }
 }
